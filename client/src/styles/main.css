@@ -1,0 +1,484 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* height: 100vh; */
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "NotoSerif";
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+.background {
+  position: fixed !important;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@font-face {
+  font-family: NotoSerif;
+  src: url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
+}
+
+.navbar {
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.navbar .login,
+.navbar .signup {
+  font-size: 1.1rem;
+}
+
+.navbar .title {
+  font-size: 1.5rem;
+  margin-right: 2rem;
+}
+
+.navbar .nav-item {
+  margin: 0 1rem;
+}
+
+.navbar .nav-item .nav-link {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .nav-item .nav-link:hover {
+  opacity: 0.7;
+}
+
+.container {
+  height: 100%;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.card {
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.login-card {
+  height: 40vh;
+}
+
+.signup-card {
+  height: 45vh;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: rgba(89, 217, 123, 0.7);
+}
+
+.social_icon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.card-header h3 {
+  color: white;
+}
+
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: rgba(89, 217, 123, 0.7);
+  color: black;
+  border: 0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  -webkit-box-shadow: 0 0 0 0 !important;
+          box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+  color: white;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.submit_btn {
+  color: black;
+  background-color: rgba(89, 217, 123, 0.7);
+  width: 100px;
+  outline: none;
+  border: solid rgba(89, 217, 123, 0.7);
+  border-radius: 1rem;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.login_btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.links {
+  color: white;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+#About {
+  color: white;
+}
+
+#About .badge {
+  margin: 0 0.3rem;
+}
+
+#About .modal-content {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+#About .btn {
+  color: white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.nav-item .nav-link {
+  cursor: pointer;
+}
+
+.nav-item select {
+  border: none;
+}
+
+.hero {
+  padding: 1rem 0px !important;
+  margin: 0px !important;
+}
+
+.cardbox {
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 0px !important;
+}
+
+/* ------------------------------- */
+/* Cardbox Heading
+---------------------------------- */
+.cardbox .cardbox-heading {
+  padding: 16px;
+  margin: 0;
+}
+
+.cardbox .btn-flat.btn-flat-icon {
+  border-radius: 50%;
+  font-size: 24px;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  overflow: hidden;
+  color: #fff !important;
+  background: #b5b6b6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.cardbox .float-right .dropdown-menu {
+  position: relative;
+  left: 13px !important;
+}
+
+.cardbox .float-right a:hover {
+  background: #f4f4f4 !important;
+}
+
+.cardbox .float-right a.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 4px 0px 4px 10px;
+  clear: both;
+  font-weight: 400;
+  font-family: "Abhaya Libre", serif;
+  font-size: 14px !important;
+  color: #848484;
+  text-align: inherit;
+  white-space: nowrap;
+  background: 0 0;
+  border: 0;
+}
+
+/* ------------------------------- */
+/* Media Section
+---------------------------------- */
+.media {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: start;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+
+.media .popular {
+  margin: 0 0.5rem;
+}
+
+.d-flex {
+  display: -ms-flexbox !important;
+  display: -webkit-box !important;
+  display: flex !important;
+}
+
+.media .mr-3 {
+  margin-right: 1rem !important;
+}
+
+.media img {
+  width: 48px !important;
+  height: 48px !important;
+  padding: 2px;
+  border: 2px solid #f4f4f4;
+}
+
+.media-body {
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+          flex: 1;
+  padding: 0.4rem !important;
+}
+
+.media-body p {
+  font-family: "Rokkitt", serif;
+  font-weight: 500 !important;
+  font-size: 14px;
+  color: #88898a;
+}
+
+.media-body small span {
+  font-family: "Rokkitt", serif;
+  font-size: 12px;
+  color: #aaa;
+  margin-right: 10px;
+}
+
+/* ------------------------------- */
+/* Cardbox Item
+---------------------------------- */
+.cardbox .cardbox-item {
+  position: relative;
+  display: block;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.fw {
+  width: 100% !important;
+  height: auto;
+}
+
+/* ------------------------------- */
+/* Cardbox Base
+---------------------------------- */
+.cardbox-base {
+  border-bottom: 2px solid #f4f4f4;
+}
+
+.cardbox-base ul {
+  margin: 10px 0px 10px 15px !important;
+  padding: 10px !important;
+  font-size: 0px;
+  display: inline-block;
+}
+
+.cardbox-base li {
+  list-style: none;
+  margin: 0px 0px 0px -8px !important;
+  padding: 0px 0px 0px 0px !important;
+  display: inline-block;
+}
+
+.cardbox-base li a {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.cardbox-base li a .icon {
+  position: relative;
+  top: 4px;
+  font-size: 16px;
+  color: #8d8d8d;
+  margin-right: 15px;
+}
+
+.cardbox-base li a span {
+  font-family: "Rokkitt", serif;
+  font-size: 14px;
+  color: #8d8d8d;
+  margin-left: 20px;
+  position: relative;
+  top: 5px;
+}
+
+.cardbox-base li a em {
+  font-family: "Rokkitt", serif;
+  font-size: 14px;
+  color: #8d8d8d;
+  position: relative;
+  top: 3px;
+}
+
+.cardbox-base li a img {
+  width: 25px;
+  height: 25px;
+  margin: 0px !important;
+  border: 2px solid #fff;
+}
+
+/* ------------------------------- */
+/* Cardbox Comments
+---------------------------------- */
+.cardbox-comments {
+  padding: 10px 40px 20px 40px !important;
+  font-size: 0px;
+  text-align: center;
+  display: inline-block;
+}
+
+.cardbox-comments .comment-avatar img {
+  margin-top: 1px;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+}
+
+.cardbox-comments .comment-body {
+  overflow: auto;
+}
+
+.search {
+  position: relative;
+  right: -60px;
+  top: -40px;
+  margin-bottom: -40px;
+  border: 2px solid #f4f4f4;
+  width: 100%;
+  overflow: hidden;
+}
+
+.search input[type="text"] {
+  background-color: #fff;
+  line-height: 10px;
+  padding: 15px 60px 20px 10px;
+  border: none;
+  border-radius: 4px;
+  width: 350px;
+  font-family: "Rokkitt", serif;
+  font-size: 14px;
+  color: #8d8d8d;
+  height: inherit;
+  font-weight: 700;
+}
+
+.search button {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  border: none;
+  background-color: transparent;
+  color: #bbbbbb;
+  padding: 15px 25px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.search button i {
+  font-size: 20px;
+  line-height: 30px;
+  display: block;
+}
+
+/* ------------------------------- */
+/* Author
+---------------------------------- */
+.author a {
+  font-family: "Rokkitt", serif;
+  font-size: 16px;
+  color: #00c4cf;
+}
+
+.author p {
+  font-family: "Rokkitt", serif;
+  font-size: 16px;
+  color: #8d8d8d;
+}
+
+body {
+  height: 150vh;
+}
+/*# sourceMappingURL=main.css.map */
