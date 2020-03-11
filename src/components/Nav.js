@@ -1,6 +1,12 @@
 import React from "react";
-import "bootstrap";
 import About from "./About";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faBook,
+  faSignInAlt,
+  faUserPlus
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav() {
   return (
@@ -26,6 +32,7 @@ export default function Nav() {
             <li className="nav-item active">
               <a className="nav-link text-light" href="#">
                 Home <span className="sr-only">(current)</span>
+                <FontAwesomeIcon icon={faHome} />
               </a>
             </li>
             <li className="nav-item">
@@ -36,29 +43,30 @@ export default function Nav() {
                 data-target="#About"
               >
                 About
+                <FontAwesomeIcon icon={faBook} />
               </a>
             </li>
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a
+              <div
                 className="nav-link text-light login "
                 data-toggle="modal"
                 data-target="#Login"
-                href="#"
               >
                 Login
-              </a>
+                <FontAwesomeIcon icon={faSignInAlt} />
+              </div>
             </li>
             <li className="nav-item">
-              <a
+              <div
                 className="nav-link text-light signup"
-                href="#"
                 data-toggle="modal"
                 data-target="#SignUp"
               >
                 Sign Up
-              </a>
+                <FontAwesomeIcon icon={faUserPlus} />
+              </div>
             </li>
           </ul>
         </div>

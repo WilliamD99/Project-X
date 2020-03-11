@@ -1,8 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faKey, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import $ from "jquery";
 
 export default function Login() {
   return (
@@ -52,7 +51,7 @@ export default function Login() {
                       placeholder="Password"
                     />
                   </div>
-                  <div class="row align-items-center remember">
+                  <div className="row align-items-center remember">
                     <input type="checkbox" />
                     Remember Me
                   </div>

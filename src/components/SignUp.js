@@ -70,14 +70,11 @@ export default function SignUp() {
                       className="float-right submit_btn"
                     />
                   </div>
-                  <div className="form-group">
-                    <button className="float-right submit_btn">Cancel</button>
-                  </div>
                 </form>
               </div>
               <div className="card-footer">
                 <div className="d-flex justify-content-center links">
-                  Already have an account?<a href="#">Sign in</a>
+                  Already have an account?<a href="#"> Sign in</a>
                 </div>
               </div>
             </div>
