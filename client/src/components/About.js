@@ -32,6 +32,7 @@ export default function About() {
                 height="140"
                 border="0"
                 className="img-circle"
+                alt="Will's headshot"
               />
               <h3 className="media-heading">
                 Will Doan <small>Canada</small>

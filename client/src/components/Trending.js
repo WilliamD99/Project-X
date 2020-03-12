@@ -8,7 +8,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Main({ data }) {
-  console.log(data);
+  let contributors = arr => {
+    let ele = arr.map(contributor => (
+      <li key={contributor.username}>
+        <a href={contributor.href}>
+          <img
+            src={contributor.avatar}
+            className="img-fluid rounded-circle"
+            alt="User"
+          />
+        </a>
+      </li>
+    ));
+    return ele;
+  };
   let contents = data.map((content, index) => (
     <section className="hero" key={index}>
       <div className="container">
@@ -49,12 +62,12 @@ export default function Main({ data }) {
               </div>
 
               <div className="cardbox-item">
-                <div class="">
-                  <div class="card-body">
+                <div className="">
+                  <div className="card-body">
                     <a href={content.url}>
-                      <h5 class="card-title">{content.name}</h5>
+                      <h5 className="card-title">{content.name}</h5>
                     </a>
-                    <p class="card-text">{content.description}</p>
+                    <p className="card-text">{content.description}</p>
                   </div>
                 </div>
               </div>
@@ -81,6 +94,16 @@ export default function Main({ data }) {
                     </a>
                   </li>
                 </ul>
+                <ul id="contributors" className="float-right">
+                  <li id="sum-contributors">
+                    <a>
+                      <span className="mr-5">
+                        {content.builtBy.length} contributors
+                      </span>
+                    </a>
+                  </li>
+                  <div>{contributors(content.builtBy)}</div>
+                </ul>
               </div>
               <div className="cardbox-comments">
                 <span className="comment-avatar float-left">
@@ -100,5 +123,32 @@ export default function Main({ data }) {
       </div>
     </section>
   ));
-  return <>{contents}</>;
+  return (
+    <>
+      {contents}
+      <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-center">
+          <li className="page-item">
+            <a className="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link">1</a>
+          </li>
+          <li className="page-item">
+            <a className="page-link">2</a>
+          </li>
+          <li className="page-item">
+            <a className="page-link">3</a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </>
+  );
 }

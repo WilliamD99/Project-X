@@ -129,6 +129,14 @@
 ---------------------------------- */
 .cardbox-base {
   border-bottom: 2px solid #f4f4f4;
+  #contributors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #sum-contributors {
+    margin-bottom: 1rem;
+  }
 }
 .cardbox-base ul {
   margin: 10px 0px 10px 15px !important;
