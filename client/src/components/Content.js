@@ -5,10 +5,21 @@ import chunk from "../helpers/sliceData";
 
 export default class Content extends Component {
   state = {
-    trending: null,
     frequent: "daily",
-    page: 0
+    page: 0,
   };
+  //Init page buttons
+  pageNum = num => {
+    let numberOfPage = [];
+    for (let i = 1; i <= num; i++) {
+      let page = <li className="page-item" key={i}>
+        <a className="page-link" onClick={this.handlePage}>{i}</a>
+      </li>
+      numberOfPage.push(page)
+    };
+    return numberOfPage;
+  }
+  //Init language selections
   langArr = () => {
     let arr = [
       "Javascript",
@@ -24,10 +35,10 @@ export default class Content extends Component {
     let options = arr.map((lang, index) => <option key={index}>{lang}</option>);
     return options;
   };
+  //Handle change event function
   handleChange = event => {
     event.preventDefault();
     const target = event.target;
-    console.log(target.value);
     if (target.value === "None") {
       this.setState({
         [target.name]: ""
@@ -38,26 +49,33 @@ export default class Content extends Component {
       });
     }
   };
+  handlePage = event => {
+    const target = event.target;
+    this.setState({
+      page: parseInt(target.innerHTML) - 1
+    })
+  }
+
   async componentDidMount() {
     let dataObject = await trending.get(`?since=${this.state.since}`);
     let data = dataObject.data;
+    console.log(data)
     let dataSliced = data.chunk(10);
     this.setState({
-      trending: dataSliced[0]
+      trending: dataSliced
     });
   }
   async componentDidUpdate(prevProps, prevState) {
     if (
       this.state.frequent !== prevState.frequent ||
-      this.state.language !== prevState.langugage
-    ) {
+      this.state.language !== prevState.langugage || this.state.page !== prevState.page || this.state.page_max !== prevState.page_max) {
       let dataObject = await trending.get(
         `?since=${this.state.frequent}&language=${this.state.language}`
       );
       let data = dataObject.data;
       let dataSliced = data.chunk(10);
       this.setState({
-        trending: dataSliced[0]
+        trending: data,
       });
     }
   }
@@ -98,7 +116,12 @@ export default class Content extends Component {
               <p className="nav-link">Link</p>
             </li>
           </ul>
-          <Main data={this.state.trending} />
+          {/* <Main data={this.state.trending[this.state.page]} /> */}
+          <nav aria-label="Page navigation example">
+            <ul className="pagination justify-content-center">
+              {this.pageNum(this.state.trending)}
+            </ul>
+          </nav>
         </>
       );
     }
