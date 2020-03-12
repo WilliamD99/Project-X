@@ -7,7 +7,8 @@ export default class Content extends Component {
   state = {
     trending: null,
     frequent: "daily",
-    page: 0
+    page: 0,
+    page_max: 0
   };
   langArr = () => {
     let arr = [
@@ -41,9 +42,10 @@ export default class Content extends Component {
   async componentDidMount() {
     let dataObject = await trending.get(`?since=${this.state.since}`);
     let data = dataObject.data;
-    let dataSliced = data.chunk(10);
+    let dataSliced = chunk(data, 10);
     this.setState({
-      trending: dataSliced[0]
+      trending: dataSliced[0],
+      page_max: dataSliced.length
     });
   }
   async componentDidUpdate(prevProps, prevState) {
@@ -55,9 +57,10 @@ export default class Content extends Component {
         `?since=${this.state.frequent}&language=${this.state.language}`
       );
       let data = dataObject.data;
-      let dataSliced = data.chunk(10);
+      let dataSliced = chunk(data, 10);
       this.setState({
-        trending: dataSliced[0]
+        trending: dataSliced[0],
+        dataSliced: dataSliced.length
       });
     }
   }
