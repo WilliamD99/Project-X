@@ -1,15 +1,38 @@
 import React, { Component } from "react";
-import Main from "./Trending";
+import Trending from "./Trending";
+import MenuLeft from "./MenuLeft";
 import trending from "../helpers/trending";
 import chunk from "../helpers/sliceData";
+import { Link } from "react-router-dom";
 
 export default class Content extends Component {
   state = {
-    trending: null,
     frequent: "daily",
+    language: "",
     page: 0,
     page_max: 0
   };
+  //Init page buttons
+  pageNum = num => {
+    let numberOfPage = [];
+    let url = window.location.href;
+    for (let i = 1; i <= num; i++) {
+      let page = (
+        <Link
+          to={`/page-${i}`}
+          className="page-link pagination"
+          id="pagination"
+          onClick={this.handlePage}
+          key={i}
+        >
+          {i}
+        </Link>
+      );
+      numberOfPage.push(page);
+    }
+    return numberOfPage;
+  };
+  //Init language selections
   langArr = () => {
     let arr = [
       "Javascript",
@@ -20,15 +43,17 @@ export default class Content extends Component {
       "Python",
       "Swift",
       "Rust",
-      "Go"
+      "Go",
+      "React",
+      "Vue"
     ];
     let options = arr.map((lang, index) => <option key={index}>{lang}</option>);
     return options;
   };
+  //Handle change event function
   handleChange = event => {
     event.preventDefault();
     const target = event.target;
-    console.log(target.value);
     if (target.value === "None") {
       this.setState({
         [target.name]: ""
@@ -39,37 +64,55 @@ export default class Content extends Component {
       });
     }
   };
-  async componentDidMount() {
-    let dataObject = await trending.get(`?since=${this.state.since}`);
-    let data = dataObject.data;
+  //Handle page
+  handlePage = event => {
+    const target = event.target;
+    if (target.classList.value.indexOf("pagination") === -1) {
+      target.classList.add("pagination");
+    } else {
+      target.classList.remove("pagination");
+    }
+    this.setState({
+      page: parseInt(target.innerHTML) - 1
+    });
+  };
+  processData = obj => {
+    let data = obj.data;
     let dataSliced = chunk(data, 10);
     this.setState({
-      trending: dataSliced[0],
+      trending: dataSliced,
       page_max: dataSliced.length
     });
+  };
+  async componentDidMount() {
+    let dataObject = await trending.get(
+      `repositories?since=${this.state.frequent}`
+    );
+    this.processData(dataObject);
   }
   async componentDidUpdate(prevProps, prevState) {
     if (
-      this.state.frequent !== prevState.frequent ||
-      this.state.language !== prevState.langugage
+      this.state.language !== prevState.language ||
+      this.state.frequent !== prevState.frequent
     ) {
       let dataObject = await trending.get(
-        `?since=${this.state.frequent}&language=${this.state.language}`
+        `repositories?language=${this.state.language}&since=${this.state.frequent}`
       );
       let data = dataObject.data;
       let dataSliced = chunk(data, 10);
       this.setState({
-        trending: dataSliced[0],
-        dataSliced: dataSliced.length
+        trending: dataSliced,
+        page_max: dataSliced.length
       });
     }
   }
   render() {
-    if (this.state.trending === null) {
+    if (this.state.trending === undefined) {
       return <h1>Loading</h1>;
     } else {
       return (
         <>
+          <MenuLeft />
           <ul className="nav justify-content-center" id="menu">
             <li className="nav-item">
               <div className="form-group">
@@ -101,7 +144,24 @@ export default class Content extends Component {
               <p className="nav-link">Link</p>
             </li>
           </ul>
-          <Main data={this.state.trending} />
+          <Trending data={this.state.trending[this.state.page]} />
+          <nav>
+            <ul className="pagination justify-content-center">
+              <li className="page-item">
+                <a className="page-link" aria-label="Previous">
+                  <span aria-hidden="true">«</span>
+                  <span className="sr-only">Previous</span>
+                </a>
+              </li>
+              {this.pageNum(this.state.page_max)}
+              <li className="page-item">
+                <a className="page-link" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+                  <span className="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </>
       );
     }

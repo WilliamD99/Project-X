@@ -262,3 +262,12 @@
   font-size: 16px;
   color: #8d8d8d;
 }
+// Pagination
+.page-item {
+  .page-link {
+    cursor: pointer;
+  }
+  .pagination-active {
+    opacity: 0.5;
+  }
+}

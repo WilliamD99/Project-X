@@ -6,7 +6,7 @@ import Nav from "./components/Nav";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Content from "./components/Content";
-
+import Developers from "./components/Developers";
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,8 +20,12 @@ function App() {
       <Nav />
       <Login />
       <SignUp />
-      <Content />
+      <Developers />
       <Particles className="background" params={config} />
+      <Switch>
+        <Redirect from="home" to="/" />
+        <Route path="/" component={Content} />
+      </Switch>
     </Router>
   );
 }
