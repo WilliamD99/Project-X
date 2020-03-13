@@ -9,7 +9,7 @@ export default class Developers extends Component {
     let dataObjects = await trending.get("developers");
     let data = dataObjects.data;
     this.setState({
-      developers: data.slice(0, 4)
+      developers: data.slice(0, 5)
     });
   }
   htmlConstructor = arr => {
@@ -27,7 +27,9 @@ export default class Developers extends Component {
           <a href={dev.url} className="h6 text-muted">
             {dev.name}
           </a>
-          <div className="h5">6758</div>
+          <a className="h5" href={dev.repo.url}>
+            {dev.repo.name}
+          </a>
         </div>
       </li>
     ));

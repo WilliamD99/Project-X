@@ -4,6 +4,8 @@ import MenuLeft from "./MenuLeft";
 import trending from "../helpers/trending";
 import chunk from "../helpers/sliceData";
 import { Link } from "react-router-dom";
+import Developers from "./Developers";
+import { Switch, Route } from "react-router-dom";
 
 export default class Content extends Component {
   state = {
@@ -113,6 +115,7 @@ export default class Content extends Component {
       return (
         <>
           <MenuLeft />
+          <Developers />
           <ul className="nav justify-content-center" id="menu">
             <li className="nav-item">
               <div className="form-group">
@@ -144,7 +147,14 @@ export default class Content extends Component {
               <p className="nav-link">Link</p>
             </li>
           </ul>
-          <Trending data={this.state.trending[this.state.page]} />
+          <Switch>
+            <Route
+              path="/"
+              render={() => (
+                <Trending data={this.state.trending[this.state.page]} />
+              )}
+            ></Route>
+          </Switch>
           <nav>
             <ul className="pagination justify-content-center">
               <li className="page-item">

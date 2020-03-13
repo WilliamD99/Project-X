@@ -185,6 +185,10 @@ input:focus {
   border: none;
 }
 
+#test {
+  position: absolute;
+}
+
 .hero {
   padding: 1rem 0px !important;
   margin: 0px !important;
@@ -529,7 +533,7 @@ input:focus {
 #developers {
   position: absolute;
   top: 20%;
-  right: 3%;
+  right: 1%;
 }
 
 #developers .card-body {
@@ -544,9 +548,9 @@ input:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 #developers .dev-avatar {
@@ -564,7 +568,6 @@ input:focus {
 }
 
 #developers .dev-details {
-  text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -572,9 +575,9 @@ input:focus {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 body {

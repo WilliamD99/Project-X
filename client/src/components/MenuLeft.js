@@ -1,58 +1,46 @@
 import React from "react";
 import "../helpers/menu-left";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFireAlt,
-  faStar,
-  faUser,
-  faBookOpen,
-  faQuestion
-} from "@fortawesome/free-solid-svg-icons";
-import onSelect from "../helpers/menu-left";
+import { Sidenav, Icon, Dropdown, Nav } from "rsuite";
+import "rsuite/dist/styles/rsuite-default.css";
 
 export default function MenuLeft() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-4 col-md-2 sidebar" id="side">
-          <div className="mini-submenu">
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </div>
-          <div className="list-group">
-            <span className="list-group-item active" id="sub-menu">
-              Search by
-              <span className="pull-right" id="slide-submenu">
-                <i className="fa fa-times"></i>
-              </span>
-            </span>
-            <a
-              className="list-group-item option options-active"
-              onClick={onSelect}
+    <div style={{ width: 250 }} id="test">
+      <Sidenav defaultOpenKeys={["3", "4"]} activeKey="1">
+        <Sidenav.Body>
+          <Nav>
+            <Nav.Item eventKey="1" icon={<Icon icon="dashboard" />}>
+              Dashboard
+            </Nav.Item>
+            <Nav.Item eventKey="2" icon={<Icon icon="group" />}>
+              User Group
+            </Nav.Item>
+            <Dropdown
+              eventKey="3"
+              title="Advanced"
+              icon={<Icon icon="magic" />}
             >
-              <FontAwesomeIcon icon={faFireAlt} className="options-left" />
-              Trending
-            </a>
-            <a className="list-group-item option" onClick={onSelect}>
-              <FontAwesomeIcon icon={faStar} className="options-left" />
-              Top Projects
-            </a>
-            <a className="list-group-item option" onClick={onSelect}>
-              <FontAwesomeIcon icon={faUser} className="options-left" />
-              Users
-            </a>
-            <a className="list-group-item option" onClick={onSelect}>
-              <FontAwesomeIcon className="options-left" icon={faBookOpen} />
-              Topic
-            </a>
-            <a className="list-group-item option" onClick={onSelect}>
-              <FontAwesomeIcon className="options-left" icon={faQuestion} />
-              Weird Projects
-            </a>
-          </div>
-        </div>
-      </div>
+              <Dropdown.Item eventKey="3-1">Geo</Dropdown.Item>
+              <Dropdown.Item eventKey="3-2">Devices</Dropdown.Item>
+              <Dropdown.Item eventKey="3-3">Loyalty</Dropdown.Item>
+              <Dropdown.Item eventKey="3-4">Visit Depth</Dropdown.Item>
+            </Dropdown>
+            <Dropdown
+              eventKey="4"
+              title="Settings"
+              icon={<Icon icon="gear-circle" />}
+            >
+              <Dropdown.Item eventKey="4-1">Applications</Dropdown.Item>
+              <Dropdown.Item eventKey="4-2">Channels</Dropdown.Item>
+              <Dropdown.Item eventKey="4-3">Versions</Dropdown.Item>
+              <Dropdown.Menu eventKey="4-5" title="Custom Action">
+                <Dropdown.Item eventKey="4-5-1">Action Name</Dropdown.Item>
+                <Dropdown.Item eventKey="4-5-2">Action Params</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav>
+        </Sidenav.Body>
+      </Sidenav>
     </div>
   );
 }
