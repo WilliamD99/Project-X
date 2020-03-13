@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Trending from "./Trending";
 import MenuLeft from "./MenuLeft";
+import Top from "./Top";
 import trending from "../helpers/trending";
 import chunk from "../helpers/sliceData";
 import { Link } from "react-router-dom";
 import Developers from "./Developers";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 export default class Content extends Component {
   state = {
+    option: "trending",
     frequent: "daily",
     language: "",
     page: 0,
@@ -17,7 +19,6 @@ export default class Content extends Component {
   //Init page buttons
   pageNum = num => {
     let numberOfPage = [];
-    let url = window.location.href;
     for (let i = 1; i <= num; i++) {
       let page = (
         <Link
@@ -108,13 +109,18 @@ export default class Content extends Component {
       });
     }
   }
+  pass = val => {
+    this.setState({
+      option: val
+    });
+  };
   render() {
     if (this.state.trending === undefined) {
       return <h1>Loading</h1>;
     } else {
       return (
         <>
-          <MenuLeft />
+          <MenuLeft option={this.pass} />
           <Developers />
           <ul className="nav justify-content-center" id="menu">
             <li className="nav-item">
@@ -148,24 +154,35 @@ export default class Content extends Component {
             </li>
           </ul>
           <Switch>
+            <Redirect from="trend" to="/" />
             <Route
+              exact
               path="/"
               render={() => (
                 <Trending data={this.state.trending[this.state.page]} />
               )}
             ></Route>
+            <Route path="/top" component={Top} />
           </Switch>
           <nav>
             <ul className="pagination justify-content-center">
               <li className="page-item">
-                <a className="page-link" aria-label="Previous">
+                <a
+                  className="page-link"
+                  aria-label="Previous"
+                  href="https://www.google.com"
+                >
                   <span aria-hidden="true">«</span>
                   <span className="sr-only">Previous</span>
                 </a>
               </li>
               {this.pageNum(this.state.page_max)}
               <li className="page-item">
-                <a className="page-link" aria-label="Next">
+                <a
+                  className="page-link"
+                  aria-label="Next"
+                  href="https://www.google.com"
+                >
                   <span aria-hidden="true">»</span>
                   <span className="sr-only">Next</span>
                 </a>

@@ -1,12 +1,12 @@
-#About {
+.badge {
+  margin: 0 0.3rem;
+}
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.8) !important;
   color: white;
-  .badge {
-    margin: 0 0.3rem;
-  }
-  .modal-content {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-  }
-  .btn {
-    color: white;
-  }
+  border: none !important;
+  border-radius: 0 !important;
+}
+.btn {
+  color: white !important;
 }

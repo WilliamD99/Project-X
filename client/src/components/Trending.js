@@ -74,33 +74,31 @@ export default function Main({ data }) {
               <div className="cardbox-base">
                 <ul className="float-left">
                   <li>
-                    <a>
+                    <span>
                       <FontAwesomeIcon icon={faComment} className="icon" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a>
+                    <span>
                       <em className="mr-5">12</em>
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a>
+                    <span>
                       <FontAwesomeIcon icon={faThumbsUp} className="icon" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a>
+                    <span>
                       <span>242 Likes</span>
-                    </a>
+                    </span>
                   </li>
                 </ul>
                 <ul id="contributors" className="float-right">
                   <li id="sum-contributors">
-                    <a>
-                      <span className="mr-5">
-                        {content.builtBy.length} contributors
-                      </span>
-                    </a>
+                    <p className="mr-5">
+                      {content.builtBy.length} contributors
+                    </p>
                   </li>
                   <div>{contributors(content.builtBy)}</div>
                 </ul>

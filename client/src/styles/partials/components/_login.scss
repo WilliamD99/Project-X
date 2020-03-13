@@ -1,3 +1,7 @@
+#login {
+  padding: 0;
+  border: none;
+}
 .container {
   height: 100%;
   align-content: center;
@@ -7,6 +11,7 @@
   margin-top: auto;
   margin-bottom: auto;
   background-color: rgba(0, 0, 0, 0.8) !important;
+  border-radius: 0 !important;
 }
 
 .login-card {

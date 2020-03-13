@@ -1,18 +1,18 @@
-#side {
+#menu-left {
   position: absolute;
-  left: 3%;
-  top: 20%;
-  #sub-menu {
-    background-color: rgba(52, 58, 64, 1) !important;
-    border: none;
+}
+
+.rs-nav-item-content {
+  a {
+    color: #8e8e93;
   }
-  .options-left {
-    margin-right: 0.75rem;
+  a:hover {
+    color: #8e8e93;
+    text-decoration: none;
   }
-  .list-group-item {
-    cursor: pointer;
-  }
-  .options-active {
-    background-color: rgba(89, 217, 123, 0.4);
+}
+ul {
+  a:hover {
+    text-decoration: none;
   }
 }

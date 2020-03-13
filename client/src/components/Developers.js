@@ -27,7 +27,7 @@ export default class Developers extends Component {
           <a href={dev.url} className="h6 text-muted">
             {dev.name}
           </a>
-          <a className="h5" href={dev.repo.url}>
+          <a className="h8" href={dev.repo.url}>
             {dev.repo.name}
           </a>
         </div>
