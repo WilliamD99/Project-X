@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import trending from "../helpers/trending";
+import { trend } from "../helpers/gitAPI";
 
 export default class Developers extends Component {
   state = {
     developers: []
   };
   async componentDidMount() {
-    let dataObjects = await trending.get("developers");
+    let dataObjects = await trend.get("developers");
     let data = dataObjects.data;
     this.setState({
       developers: data.slice(0, 5)

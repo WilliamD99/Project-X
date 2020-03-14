@@ -270,3 +270,16 @@
     opacity: 0.5;
   }
 }
+.related-date {
+  display: flex;
+  justify-content: flex-end;
+  span {
+    margin: 0.5rem;
+  }
+}
+.forks,
+.watchers,
+.upload,
+.edit {
+  margin-right: 0.25rem;
+}

@@ -484,6 +484,26 @@ input:focus {
   opacity: 0.5;
 }
 
+.related-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.related-date span {
+  margin: 0.5rem;
+}
+
+.forks,
+.watchers,
+.upload,
+.edit {
+  margin-right: 0.25rem;
+}
+
 #menu-left {
   position: absolute;
 }

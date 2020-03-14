@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Trending from "./Trending";
 import MenuLeft from "./MenuLeft";
 import Top from "./Top";
-import trending from "../helpers/trending";
+import { trend, top } from "../helpers/gitAPI";
 import chunk from "../helpers/sliceData";
 import { Link } from "react-router-dom";
 import Developers from "./Developers";
@@ -10,7 +10,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 export default class Content extends Component {
   state = {
-    option: "trending",
+    option: "trend",
     frequent: "daily",
     language: "",
     page: 0,
@@ -83,30 +83,36 @@ export default class Content extends Component {
     let data = obj.data;
     let dataSliced = chunk(data, 10);
     this.setState({
-      trending: dataSliced,
+      trend: dataSliced,
       page_max: dataSliced.length
     });
   };
-  async componentDidMount() {
-    let dataObject = await trending.get(
-      `repositories?since=${this.state.frequent}`
-    );
-    this.processData(dataObject);
+  processTop = obj => {
+    let data = obj.data.items;
+    let dataSliced = chunk(data, 10);
+    this.setState({
+      top: dataSliced
+    });
+  };
+  componentDidMount() {
+    let topObject = top.get("repositories?q=stars:>1");
+    topObject.then(res => {
+      this.processTop(res);
+    });
+    let trendingObject = trend.get(`repositories?since=${this.state.frequent}`);
+    trendingObject.then(res => {
+      this.processData(res);
+    });
   }
   async componentDidUpdate(prevProps, prevState) {
     if (
       this.state.language !== prevState.language ||
       this.state.frequent !== prevState.frequent
     ) {
-      let dataObject = await trending.get(
+      let trendingObject = await trend.get(
         `repositories?language=${this.state.language}&since=${this.state.frequent}`
       );
-      let data = dataObject.data;
-      let dataSliced = chunk(data, 10);
-      this.setState({
-        trending: dataSliced,
-        page_max: dataSliced.length
-      });
+      this.processData(trendingObject);
     }
   }
   pass = val => {
@@ -114,8 +120,13 @@ export default class Content extends Component {
       option: val
     });
   };
+  pagination = val => {
+    this.setState({
+      page_max: val
+    });
+  };
   render() {
-    if (this.state.trending === undefined) {
+    if (this.state.trend === undefined || this.state.top === undefined) {
       return <h1>Loading</h1>;
     } else {
       return (
@@ -154,15 +165,18 @@ export default class Content extends Component {
             </li>
           </ul>
           <Switch>
-            <Redirect from="trend" to="/" />
+            <Redirect from="/trend" to="/" />
             <Route
               exact
               path="/"
               render={() => (
-                <Trending data={this.state.trending[this.state.page]} />
+                <Trending data={this.state.trend[this.state.page]} />
               )}
             ></Route>
-            <Route path="/top" component={Top} />
+            <Route
+              path="/top"
+              render={() => <Top data={this.state.top[this.state.page]} />}
+            />
           </Switch>
           <nav>
             <ul className="pagination justify-content-center">

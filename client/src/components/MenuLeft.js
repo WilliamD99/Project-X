@@ -8,10 +8,10 @@ export default class MenuLeft extends Component {
   };
   onSelect = event => {
     let target = event.target;
-    this.setState({
-      option: target.name
-    });
     let option = target.name;
+    this.setState({
+      option: option
+    });
     this.props.option(option);
   };
   render() {
