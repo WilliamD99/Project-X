@@ -72,36 +72,12 @@ export default function Main({ data, freq, lang }) {
                 </div>
               </div>
               <div className="cardbox-base">
-                <ul className="float-left">
-                  <li>
-                    <span>
-                      <FontAwesomeIcon icon={faComment} className="icon" />
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <em className="mr-5">12</em>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <FontAwesomeIcon icon={faThumbsUp} className="icon" />
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <span>242 Likes</span>
-                    </span>
-                  </li>
-                </ul>
-                <ul id="contributors" className="float-right">
-                  <li id="sum-contributors">
-                    <p className="mr-5">
-                      {content.builtBy.length} contributors
-                    </p>
-                  </li>
-                  <div>{contributors(content.builtBy)}</div>
-                </ul>
+                <div id="contributors" className="float-left">
+                  <ul>
+                    {content.builtBy.length} contributors{" "}
+                    {contributors(content.builtBy)}
+                  </ul>
+                </div>
               </div>
               <div className="cardbox-comments">
                 <span className="comment-avatar float-left">
