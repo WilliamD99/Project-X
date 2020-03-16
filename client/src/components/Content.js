@@ -115,9 +115,19 @@ export default class Content extends Component {
       this.processData(trendingObject);
     }
   }
-  pass = val => {
+  requestPage = val => {
     this.setState({
       option: val
+    });
+  };
+  trendingFreq = freq => {
+    this.setState({
+      frequent: freq
+    });
+  };
+  trendingLang = lang => {
+    this.setState({
+      language: lang
     });
   };
   pagination = val => {
@@ -131,46 +141,19 @@ export default class Content extends Component {
     } else {
       return (
         <>
-          <MenuLeft option={this.pass} />
+          <MenuLeft option={this.requestPage} />
           <Developers />
-          <ul className="nav justify-content-center" id="menu">
-            <li className="nav-item">
-              <div className="form-group">
-                <select
-                  className="form-control"
-                  name="frequent"
-                  onChange={this.handleChange}
-                >
-                  <option>Frequent</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                  <option>Monthly</option>
-                </select>
-              </div>
-            </li>
-            <li className="nav-item">
-              <div className="form-group">
-                <select
-                  className="form-control"
-                  name="language"
-                  onChange={this.handleChange}
-                >
-                  <option>None</option>
-                  {this.langArr()}
-                </select>
-              </div>
-            </li>
-            <li className="nav-item">
-              <p className="nav-link">Link</p>
-            </li>
-          </ul>
           <Switch>
             <Redirect from="/trend" to="/" />
             <Route
               exact
               path="/"
               render={() => (
-                <Trending data={this.state.trend[this.state.page]} />
+                <Trending
+                  data={this.state.trend[this.state.page]}
+                  freq={this.trendingFreq}
+                  lang={this.trendingLang}
+                />
               )}
             ></Route>
             <Route

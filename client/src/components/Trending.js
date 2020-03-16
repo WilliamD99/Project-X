@@ -7,7 +7,7 @@ import {
   faCodeBranch
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Main({ data }) {
+export default function Main({ data, freq, lang }) {
   let contributors = arr => {
     let ele = arr.map(contributor => (
       <li key={contributor.username}>
@@ -121,5 +121,67 @@ export default function Main({ data }) {
       </div>
     </section>
   ));
-  return <>{contents}</>;
+  //Init language selections
+  let langArr = () => {
+    let arr = [
+      "Javascript",
+      "Java",
+      "C",
+      "C#",
+      "C++",
+      "Python",
+      "Swift",
+      "Rust",
+      "Go",
+      "React",
+      "Vue"
+    ];
+    let options = arr.map((lang, index) => <option key={index}>{lang}</option>);
+    return options;
+  };
+  //Handle change event function
+  let handleFreq = event => {
+    const target = event.target;
+    freq(target.value);
+  };
+  let handleLang = event => {
+    const target = event.target;
+    lang(target.value);
+  };
+  return (
+    <>
+      <ul className="nav justify-content-center" id="menu">
+        <li className="nav-item">
+          <div className="form-group">
+            <select
+              className="form-control"
+              name="frequent"
+              onChange={handleFreq}
+            >
+              <option>Frequent</option>
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+        </li>
+        <li className="nav-item">
+          <div className="form-group">
+            <select
+              className="form-control"
+              name="language"
+              onChange={handleLang}
+            >
+              <option>None</option>
+              {langArr()}
+            </select>
+          </div>
+        </li>
+        {/* <li className="nav-item">
+          <p className="nav-link">Link</p>
+        </li> */}
+      </ul>
+      {contents}
+    </>
+  );
 }
