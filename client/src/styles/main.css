@@ -152,6 +152,10 @@ input:focus {
   color: white !important;
 }
 
+.rs-modal-content {
+  background-color: rgba(255, 255, 255, 1e-05) !important;
+}
+
 .sticky {
   position: fixed;
   top: 0;

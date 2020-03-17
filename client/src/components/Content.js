@@ -20,8 +20,8 @@ import chunk from "../helpers/sliceData";
 export default class Content extends Component {
   state = {
     option: "trend",
-    frequent: "daily",
-    language: "",
+    frequent: "daily", //Default for Trending
+    language: "", //Default for Trending
     page: 0,
     page_max: 0
   };
@@ -31,7 +31,6 @@ export default class Content extends Component {
     let dataSliced = chunk(data, 10);
     this.setState({
       trend: dataSliced,
-      page_max: dataSliced.length
     });
   };
   processTop = obj => {
@@ -53,8 +52,9 @@ export default class Content extends Component {
     let weirdObject = local.get("/weird");
     weirdObject.then(res => {
       let data = res.data;
+      let dataSliced = chunk(data, 10)
       this.setState({
-        weird: data
+        weird: dataSliced
       })
     })
   }
@@ -71,7 +71,8 @@ export default class Content extends Component {
   }
   requestPage = val => {
     this.setState({
-      option: val
+      option: val,
+      page: 0
     });
   };
   trendingFreq = freq => {
@@ -116,7 +117,7 @@ export default class Content extends Component {
               path="/top"
               render={() => <Top data={this.state.top[this.state.page]} length={this.state.top.length} pageControl={this.pagination} />}
             />
-            <Route path="/weird" render={() => <Weird data={this.state.weird} />} />
+            <Route path="/weird" render={() => <Weird data={this.state.weird[this.state.page]} length={this.state.weird.length} />} />
           </Switch>
 
         </>

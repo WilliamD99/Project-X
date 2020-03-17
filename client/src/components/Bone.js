@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Icon } from "rsuite";
 import dateFormat from "../helpers/dateFormat";
+import { Link } from "react-router-dom";
 
 export default class Bone extends Component {
     //Init page buttons
@@ -25,7 +26,6 @@ export default class Bone extends Component {
     //Handle page
     handlePage = event => {
         const target = event.target;
-        console.log(target.name)
         if (target.classList.value.indexOf("pagination") === -1) {
             target.classList.add("pagination");
         } else {
@@ -33,6 +33,35 @@ export default class Bone extends Component {
         }
         this.props.controller(target.name);
     };
+    pagination = length => {
+        if (length > 1) {
+            return <nav>
+                <ul className="pagination justify-content-center">
+                    <li className="page-item">
+                        <a
+                            className="page-link"
+                            aria-label="Previous"
+                            href="https://www.google.com"
+                        >
+                            <span aria-hidden="true">«</span>
+                            <span className="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {this.pageNum(this.props.length)}
+                    <li className="page-item">
+                        <a
+                            className="page-link"
+                            aria-label="Next"
+                            href="https://www.google.com"
+                        >
+                            <span aria-hidden="true">»</span>
+                            <span className="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }
     render() {
         let data = this.props.data;
         let contents = data.map((content, index) => (
@@ -114,30 +143,7 @@ export default class Bone extends Component {
         ));
         return <>
             {contents}
-            <nav>
-                <ul className="pagination justify-content-center">
-                    <li className="page-item">
-                        <a
-                            className="page-link"
-                            aria-label="Previous"
-                            href="https://www.google.com"
-                        >
-                            <span aria-hidden="true">«</span>
-                            <span className="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    {this.pageNum(this.props.length)}
-                    <li className="page-item">
-                        <a
-                            className="page-link"
-                            aria-label="Next"
-                            href="https://www.google.com"
-                        >
-                            <span aria-hidden="true">»</span>
-                            <span className="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav></>;
+            {this.pagination(this.props.length)}
+        </>;
     }
 }
