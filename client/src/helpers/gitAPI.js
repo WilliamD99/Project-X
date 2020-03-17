@@ -5,7 +5,7 @@ export const trend = axios.create({
   responseType: "json"
 });
 
-export const top = axios.create({
+export const git = axios.create({
   baseURL: "https://api.github.com/search/",
   responseType: "json"
 });

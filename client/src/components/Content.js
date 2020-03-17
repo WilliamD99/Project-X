@@ -1,12 +1,21 @@
+//Import libraries
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+
+//Import Components
 import Trending from "./Trending";
 import MenuLeft from "./MenuLeft";
 import Top from "./Top";
-import { trend, top } from "../helpers/gitAPI";
-import chunk from "../helpers/sliceData";
-import { Link } from "react-router-dom";
 import Developers from "./Developers";
-import { Switch, Route, Redirect } from "react-router-dom";
+import Weird from "./Weird";
+
+//Axios Call
+import local from "../helpers/local";
+import { trend, git } from "../helpers/gitAPI";
+
+//Import helper function
+import chunk from "../helpers/sliceData";
 
 export default class Content extends Component {
   state = {
@@ -34,38 +43,6 @@ export default class Content extends Component {
       numberOfPage.push(page);
     }
     return numberOfPage;
-  };
-  //Init language selections
-  langArr = () => {
-    let arr = [
-      "Javascript",
-      "Java",
-      "C",
-      "C#",
-      "C++",
-      "Python",
-      "Swift",
-      "Rust",
-      "Go",
-      "React",
-      "Vue"
-    ];
-    let options = arr.map((lang, index) => <option key={index}>{lang}</option>);
-    return options;
-  };
-  //Handle change event function
-  handleChange = event => {
-    event.preventDefault();
-    const target = event.target;
-    if (target.value === "None") {
-      this.setState({
-        [target.name]: ""
-      });
-    } else {
-      this.setState({
-        [target.name]: target.value.toLowerCase()
-      });
-    }
   };
   //Handle page
   handlePage = event => {
@@ -95,7 +72,7 @@ export default class Content extends Component {
     });
   };
   componentDidMount() {
-    let topObject = top.get("repositories?q=stars:>1");
+    let topObject = git.get("repositories?q=stars:>1");
     topObject.then(res => {
       this.processTop(res);
     });
@@ -103,6 +80,13 @@ export default class Content extends Component {
     trendingObject.then(res => {
       this.processData(res);
     });
+    let weirdObject = local.get("/weird");
+    weirdObject.then(res => {
+      let data = res.data;
+      this.setState({
+        weird: data
+      })
+    })
   }
   async componentDidUpdate(prevProps, prevState) {
     if (
@@ -160,6 +144,7 @@ export default class Content extends Component {
               path="/top"
               render={() => <Top data={this.state.top[this.state.page]} />}
             />
+            <Route path="/weird" render={() => <Weird data={this.state.weird} />} />
           </Switch>
           <nav>
             <ul className="pagination justify-content-center">
