@@ -1,13 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faThumbsUp,
-  faComment,
   faStar,
   faCodeBranch
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Main({ data, freq, lang }) {
+export default function Main({ data, freq, lang, length, pageControl }) {
   let contributors = arr => {
     let ele = arr.map(contributor => (
       <li key={contributor.username}>
@@ -124,6 +122,34 @@ export default function Main({ data, freq, lang }) {
     const target = event.target;
     lang(target.value);
   };
+  let pageNum = num => {
+    let numberOfPage = [];
+    for (let i = 1; i <= num; i++) {
+      let page = (
+        <button
+          className="page-link pagination"
+          id="pagination"
+          onClick={handlePage}
+          key={i}
+          name={i - 1}
+        >
+          {i}
+        </button>
+      );
+      numberOfPage.push(page);
+    }
+    return numberOfPage;
+  };
+  //Handle page
+  let handlePage = event => {
+    const target = event.target;
+    if (target.classList.value.indexOf("pagination") === -1) {
+      target.classList.add("pagination");
+    } else {
+      target.classList.remove("pagination");
+    }
+    pageControl(target.name);
+  };
   return (
     <>
       <ul className="nav justify-content-center" id="menu">
@@ -158,6 +184,31 @@ export default function Main({ data, freq, lang }) {
         </li> */}
       </ul>
       {contents}
+      <nav>
+        <ul className="pagination justify-content-center">
+          <li className="page-item">
+            <a
+              className="page-link"
+              aria-label="Previous"
+              href="https://www.google.com"
+            >
+              <span aria-hidden="true">«</span>
+              <span className="sr-only">Previous</span>
+            </a>
+          </li>
+          {pageNum(length)}
+          <li className="page-item">
+            <a
+              className="page-link"
+              aria-label="Next"
+              href="https://www.google.com"
+            >
+              <span aria-hidden="true">»</span>
+              <span className="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 }

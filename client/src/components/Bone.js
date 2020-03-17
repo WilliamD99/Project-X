@@ -3,6 +3,36 @@ import { Icon } from "rsuite";
 import dateFormat from "../helpers/dateFormat";
 
 export default class Bone extends Component {
+    //Init page buttons
+    pageNum = num => {
+        let numberOfPage = [];
+        for (let i = 1; i <= num; i++) {
+            let page = (
+                <button
+                    className="page-link pagination"
+                    id="pagination"
+                    onClick={this.handlePage}
+                    key={i}
+                    name={i - 1}
+                >
+                    {i}
+                </button>
+            );
+            numberOfPage.push(page);
+        }
+        return numberOfPage;
+    };
+    //Handle page
+    handlePage = event => {
+        const target = event.target;
+        console.log(target.name)
+        if (target.classList.value.indexOf("pagination") === -1) {
+            target.classList.add("pagination");
+        } else {
+            target.classList.remove("pagination");
+        }
+        this.props.controller(target.name);
+    };
     render() {
         let data = this.props.data;
         let contents = data.map((content, index) => (
@@ -82,6 +112,32 @@ export default class Bone extends Component {
                 </div>
             </section>
         ));
-        return <>{contents}</>;
+        return <>
+            {contents}
+            <nav>
+                <ul className="pagination justify-content-center">
+                    <li className="page-item">
+                        <a
+                            className="page-link"
+                            aria-label="Previous"
+                            href="https://www.google.com"
+                        >
+                            <span aria-hidden="true">«</span>
+                            <span className="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {this.pageNum(this.props.length)}
+                    <li className="page-item">
+                        <a
+                            className="page-link"
+                            aria-label="Next"
+                            href="https://www.google.com"
+                        >
+                            <span aria-hidden="true">»</span>
+                            <span className="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav></>;
     }
 }

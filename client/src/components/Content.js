@@ -25,37 +25,7 @@ export default class Content extends Component {
     page: 0,
     page_max: 0
   };
-  //Init page buttons
-  pageNum = num => {
-    let numberOfPage = [];
-    for (let i = 1; i <= num; i++) {
-      let page = (
-        <Link
-          to={`/page-${i}`}
-          className="page-link pagination"
-          id="pagination"
-          onClick={this.handlePage}
-          key={i}
-        >
-          {i}
-        </Link>
-      );
-      numberOfPage.push(page);
-    }
-    return numberOfPage;
-  };
-  //Handle page
-  handlePage = event => {
-    const target = event.target;
-    if (target.classList.value.indexOf("pagination") === -1) {
-      target.classList.add("pagination");
-    } else {
-      target.classList.remove("pagination");
-    }
-    this.setState({
-      page: parseInt(target.innerHTML) - 1
-    });
-  };
+
   processData = obj => {
     let data = obj.data;
     let dataSliced = chunk(data, 10);
@@ -116,7 +86,7 @@ export default class Content extends Component {
   };
   pagination = val => {
     this.setState({
-      page_max: val
+      page: val
     });
   };
   render() {
@@ -137,40 +107,18 @@ export default class Content extends Component {
                   data={this.state.trend[this.state.page]}
                   freq={this.trendingFreq}
                   lang={this.trendingLang}
+                  length={this.state.trend.length}
+                  pageControl={this.pagination}
                 />
               )}
             ></Route>
             <Route
               path="/top"
-              render={() => <Top data={this.state.top[this.state.page]} />}
+              render={() => <Top data={this.state.top[this.state.page]} length={this.state.top.length} pageControl={this.pagination} />}
             />
             <Route path="/weird" render={() => <Weird data={this.state.weird} />} />
           </Switch>
-          <nav>
-            <ul className="pagination justify-content-center">
-              <li className="page-item">
-                <a
-                  className="page-link"
-                  aria-label="Previous"
-                  href="https://www.google.com"
-                >
-                  <span aria-hidden="true">«</span>
-                  <span className="sr-only">Previous</span>
-                </a>
-              </li>
-              {this.pageNum(this.state.page_max)}
-              <li className="page-item">
-                <a
-                  className="page-link"
-                  aria-label="Next"
-                  href="https://www.google.com"
-                >
-                  <span aria-hidden="true">»</span>
-                  <span className="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+
         </>
       );
     }
