@@ -1,11 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faCodeBranch
-} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
 
-export default function Main({ data, freq, lang, length, pageControl }) {
+export default function Trening({ data, freq, lang, length, pageControl }) {
   let contributors = arr => {
     let ele = arr.map(contributor => (
       <li key={contributor.username}>
@@ -116,7 +113,11 @@ export default function Main({ data, freq, lang, length, pageControl }) {
   //Handle change event function
   let handleFreq = event => {
     const target = event.target;
-    freq(target.value);
+    if (target.value === "none") {
+      freq("");
+    } else {
+      freq(target.value);
+    }
   };
   let handleLang = event => {
     const target = event.target;
@@ -174,7 +175,6 @@ export default function Main({ data, freq, lang, length, pageControl }) {
               name="language"
               onChange={handleLang}
             >
-              <option>None</option>
               {langArr()}
             </select>
           </div>

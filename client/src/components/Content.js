@@ -24,12 +24,11 @@ export default class Content extends Component {
     page: 0,
     page_max: 0
   };
-
   processData = obj => {
     let data = obj.data;
     let dataSliced = chunk(data, 10);
     this.setState({
-      trend: dataSliced,
+      trend: dataSliced
     });
   };
   processTop = obj => {
@@ -51,11 +50,11 @@ export default class Content extends Component {
     let weirdObject = local.get("/weird");
     weirdObject.then(res => {
       let data = res.data;
-      let dataSliced = chunk(data, 10)
+      let dataSliced = chunk(data, 10);
       this.setState({
         weird: dataSliced
-      })
-    })
+      });
+    });
   }
   async componentDidUpdate(prevProps, prevState) {
     if (
@@ -95,7 +94,7 @@ export default class Content extends Component {
     } else {
       return (
         <>
-          <MenuLeft option={this.requestPage} />
+          <MenuLeft option={this.requestPage} page={this.state.option} />
           <Developers />
           <Switch>
             <Redirect from="/trend" to="/" />
@@ -114,11 +113,24 @@ export default class Content extends Component {
             ></Route>
             <Route
               path="/top"
-              render={() => <Top data={this.state.top[this.state.page]} length={this.state.top.length} pageControl={this.pagination} />}
+              render={() => (
+                <Top
+                  data={this.state.top[this.state.page]}
+                  length={this.state.top.length}
+                  pageControl={this.pagination}
+                />
+              )}
             />
-            <Route path="/weird" render={() => <Weird data={this.state.weird[this.state.page]} length={this.state.weird.length} />} />
+            <Route
+              path="/weird"
+              render={() => (
+                <Weird
+                  data={this.state.weird[this.state.page]}
+                  length={this.state.weird.length}
+                />
+              )}
+            />
           </Switch>
-
         </>
       );
     }
