@@ -38,8 +38,45 @@ body {
   color: white;
 }
 
+.rs-navbar-header {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
 .navbar-brand {
-  padding: 1rem 1.1rem;
+  padding: 2rem 1.1rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.home {
+  color: white;
+}
+
+.social-icon {
+  font-size: 2.5rem !important;
+}
+
+.social-link {
+  color: white;
+  margin: 0 0.75rem;
+}
+
+.social-link:hover {
+  color: white;
+  opacity: 0.8;
+}
+
+.location {
+  margin-bottom: 1rem;
+}
+
+.media-heading {
+  font-family: "NotoSerif" !important;
 }
 
 #login {
@@ -135,6 +172,10 @@ input:focus {
 
 .links a {
   margin-left: 4px;
+}
+
+.rs-modal-content {
+  padding: 0 !important;
 }
 
 .badge {

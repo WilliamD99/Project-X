@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Modal, Icon } from "rsuite";
 import shot from "../assets/About/Nam_Doan_WD.jpg";
+import { Link } from "react-router-dom";
 
 export default class NavTop extends Component {
   constructor(props) {
@@ -27,13 +28,13 @@ export default class NavTop extends Component {
     return (
       <Navbar id="nav-top">
         <Navbar.Header>
-          <a href="#" className="navbar-brand logo">
-            RSUITE
-          </a>
+          <p className="navbar-brand logo">
+            Project-X
+          </p>
         </Navbar.Header>
         <Navbar.Body>
           <Nav>
-            <Nav.Item icon={<Icon icon="home" />}>Home</Nav.Item>
+            <Nav.Item icon={<Icon icon="home" className="home" />} componentClass="div"><Link to="/">Home</Link></Nav.Item>
             <Nav.Item>
               <p onClick={() => this.openAbout("sm")}>About</p>
               <Modal
@@ -51,9 +52,8 @@ export default class NavTop extends Component {
                       data-dismiss="modal"
                       aria-hidden="true"
                     ></button>
-                    <h4 className="modal-title" id="myModalLabel">
-                      More About William
-                    </h4>
+                    <a href="https://github.com/WilliamD99" className="social-link"><Icon icon="github" className="social-icon" /></a>
+                    <a href="https://www.linkedin.com/in/williamd99/" className="social-link"><Icon icon="linkedin" className="social-icon" /></a>
                   </div>
                   <div className="modal-body">
                     <center>
@@ -67,17 +67,20 @@ export default class NavTop extends Component {
                         alt="Will's headshot"
                       />
                       <h3 className="media-heading">
-                        Will Doan <small>Canada</small>
+                        Will Doan
                       </h3>
+                      <h5 className="media-heading text-muted location">
+                        Vancouver, Canada
+                      </h5>
                       <span>
                         <strong>Skills: </strong>
                       </span>
                       <span className="badge badge-warning">HTML5/CSS</span>
                       <span className="badge badge-info">Javascript/React</span>
-                      <span className="badge badge-primary">SAP/Syspro</span>
+                      <span className="badge badge-danger">SAP/Syspro</span>
                       <span className="badge badge-warning">HTML5/CSS</span>
                       <span className="badge badge-success">ASP.Net Core</span>
-                      <span className="badge badge-info">Microsoft Office</span>
+                      <span className="badge badge-dark">Microsoft Office</span>
                     </center>
                     <center>
                       <p className="text-left">
@@ -95,8 +98,9 @@ export default class NavTop extends Component {
                         type="button"
                         className="btn btn-default"
                         data-dismiss="modal"
+                        onClick={this.closeAbout}
                       >
-                        I've heard enough about Will!
+                        Close <Icon icon="close-circle" />
                       </button>
                     </center>
                   </div>

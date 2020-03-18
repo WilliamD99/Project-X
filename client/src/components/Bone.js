@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "rsuite";
 import dateFormat from "../helpers/dateFormat";
-import { Link } from "react-router-dom";
 
 export default class Bone extends Component {
     //Init page buttons
