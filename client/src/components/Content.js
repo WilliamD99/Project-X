@@ -24,6 +24,7 @@ export default class Content extends Component {
     page: 0,
     page_max: 0
   };
+
   processData = obj => {
     let data = obj.data;
     let dataSliced = chunk(data, 10);
@@ -36,6 +37,21 @@ export default class Content extends Component {
     let dataSliced = chunk(data, 10);
     this.setState({
       top: dataSliced
+    });
+  };
+  trendingFreq = freq => {
+    this.setState({
+      frequent: freq
+    });
+  };
+  trendingLang = lang => {
+    this.setState({
+      language: lang
+    });
+  };
+  pagination = val => {
+    this.setState({
+      page: val
     });
   };
   componentDidMount() {
@@ -67,34 +83,13 @@ export default class Content extends Component {
       this.processData(trendingObject);
     }
   }
-  requestPage = val => {
-    this.setState({
-      option: val,
-      page: 0
-    });
-  };
-  trendingFreq = freq => {
-    this.setState({
-      frequent: freq
-    });
-  };
-  trendingLang = lang => {
-    this.setState({
-      language: lang
-    });
-  };
-  pagination = val => {
-    this.setState({
-      page: val
-    });
-  };
   render() {
     if (this.state.trend === undefined || this.state.top === undefined) {
       return <h1>Loading</h1>;
     } else {
       return (
         <>
-          <MenuLeft option={this.requestPage} page={this.state.option} />
+          <MenuLeft page={this.state.option} freq={this.trendingFreq} lang={this.trendingLang} />
           <Developers />
           <Switch>
             <Redirect from="/trend" to="/" />

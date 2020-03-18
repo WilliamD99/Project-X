@@ -92,37 +92,6 @@ export default function Trening({ data, freq, lang, length, pageControl }) {
       </div>
     </section>
   ));
-  //Init language selections
-  let langArr = () => {
-    let arr = [
-      "Javascript",
-      "Java",
-      "C",
-      "C#",
-      "C++",
-      "Python",
-      "Swift",
-      "Rust",
-      "Go",
-      "React",
-      "Vue"
-    ];
-    let options = arr.map((lang, index) => <option key={index}>{lang}</option>);
-    return options;
-  };
-  //Handle change event function
-  let handleFreq = event => {
-    const target = event.target;
-    if (target.value === "none") {
-      freq("");
-    } else {
-      freq(target.value);
-    }
-  };
-  let handleLang = event => {
-    const target = event.target;
-    lang(target.value);
-  };
   let pageNum = num => {
     let numberOfPage = [];
     for (let i = 1; i <= num; i++) {
@@ -153,36 +122,6 @@ export default function Trening({ data, freq, lang, length, pageControl }) {
   };
   return (
     <>
-      <ul className="nav justify-content-center" id="menu">
-        <li className="nav-item">
-          <div className="form-group">
-            <select
-              className="form-control"
-              name="frequent"
-              onChange={handleFreq}
-            >
-              <option>Frequent</option>
-              <option>Daily</option>
-              <option>Weekly</option>
-              <option>Monthly</option>
-            </select>
-          </div>
-        </li>
-        <li className="nav-item">
-          <div className="form-group">
-            <select
-              className="form-control"
-              name="language"
-              onChange={handleLang}
-            >
-              {langArr()}
-            </select>
-          </div>
-        </li>
-        {/* <li className="nav-item">
-          <p className="nav-link">Link</p>
-        </li> */}
-      </ul>
       {contents}
       <nav>
         <ul className="pagination justify-content-center">
