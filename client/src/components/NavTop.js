@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Navbar, Nav, Modal, Icon } from "rsuite";
 import shot from "../assets/About/Nam_Doan_WD.jpg";
 import { Link } from "react-router-dom";
+import Login from "./Login"
+import Identity from "./Identity";
 
 export default class NavTop extends Component {
   constructor(props) {
@@ -14,16 +16,22 @@ export default class NavTop extends Component {
   close = () => {
     this.setState({ showLog: false });
   };
-  open = size => {
+  open = () => {
     this.setState({ showLog: true });
   };
-  openAbout = size => {
+  openAbout = () => {
     this.setState({ showAbout: true });
   };
   closeAbout = () => {
     this.setState({ showAbout: false });
   };
-
+  identity = () => {
+    if (this.props.user === null) {
+      return <Login />
+    } else {
+      return <Identity data={this.state.user} />
+    }
+  }
   render() {
     return (
       <Navbar id="nav-top">
@@ -109,77 +117,7 @@ export default class NavTop extends Component {
             </Nav.Item>
           </Nav>
           <Nav pullRight>
-            <Nav.Item>
-              <p size="sm" onClick={() => this.open("sm")}>
-                Login
-              </p>
-              <Modal
-                size={this.state.size}
-                show={this.state.showLog}
-                onHide={this.close}
-                className="container"
-                id="login"
-              >
-                <div className="d-flex justify-content-center h-100">
-                  <div className="card login-card modal-content">
-                    <div className="card-header">
-                      <h3>Sign in</h3>
-                    </div>
-                    <div className="card-body">
-                      <form>
-                        <div className="input-group form-group">
-                          <div className="input-group-prepend">
-                            <span className="input-group-text">
-                              <Icon icon="user" />
-                            </span>
-                          </div>
-                          <input
-                            type="email"
-                            className="form-control"
-                            placeholder="Email"
-                          />
-                        </div>
-                        <div className="input-group form-group">
-                          <div className="input-group-prepend">
-                            <span className="input-group-text">
-                              <Icon icon="key"></Icon>
-                            </span>
-                          </div>
-                          <input
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
-                            autoComplete="true"
-                          />
-                        </div>
-                        <div className="row align-items-center remember">
-                          <input type="checkbox" />
-                          Remember Me
-                        </div>
-                        <div className="form-group">
-                          <input
-                            type="submit"
-                            value="Login"
-                            className="float-right submit_btn"
-                          />
-                        </div>
-                      </form>
-                    </div>
-                    <div className="card-footer">
-                      <div className="d-flex justify-content-center links">
-                        Don't have an account?<a href="#">Sign up!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* <Button onClick={this.close} appearance="primary">
-                  Ok
-                </Button>
-                <Button onClick={this.close} appearance="subtle">
-                  Cancel
-                </Button> */}
-              </Modal>
-            </Nav.Item>
+            {this.identity}
           </Nav>
         </Navbar.Body>
       </Navbar>

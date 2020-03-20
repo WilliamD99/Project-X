@@ -1,9 +1,15 @@
-import React from "react";
-import Particles from "react-particles-js";
-import config from "./helpers/config";
-import "./styles/main.css";
+//Import React Component
+import React, { Component } from "react";
 import Nav from "./components/NavTop";
 import Content from "./components/Content";
+import AuthButton from "./components/Login/AuthButton";
+import PrivateRoute from "./components/Login/PrivateRoute"
+import ProtectedPage from "./components/Login/ProtectedPage"
+import Particles from "react-particles-js";
+//Config for background
+import config from "./helpers/config";
+
+import "./styles/main.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,17 +17,29 @@ import {
   Redirect
 } from "react-router-dom";
 
-function App() {
-  return (
-    <Router>
-      <Nav />
-      <Particles className="background" params={config} />
-      <Switch>
-        <Redirect from="home" to="/" />
-        <Route path="/" component={Content} />
-      </Switch>
-    </Router>
-  );
+class App extends Component {
+  state = {
+    user: ""
+  }
+  getUser = data => {
+    this.setState({
+      user: data
+    })
+  }
+  render() {
+    return (
+      <Router>
+        <AuthButton getUser={this.getUser} />
+        <Nav user={this.state.user} />
+        <Particles className="background" params={config} />
+        <Switch>
+          <Redirect from="home" to="/" />
+          <Route path="/" component={Content} />
+          <PrivateRoute path="/protected" component={ProtectedPage} />
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

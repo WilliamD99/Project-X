@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
 
-export default function Trening({ data, freq, lang, length, pageControl }) {
+export default function Trening({ data, length, pageControl }) {
   let contributors = arr => {
     let ele = arr.map(contributor => (
       <li key={contributor.username}>

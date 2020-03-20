@@ -79,6 +79,10 @@ body {
   font-family: "NotoSerif" !important;
 }
 
+.git {
+  cursor: pointer;
+}
+
 #login {
   padding: 0;
   border: none;
@@ -614,5 +618,9 @@ ul a:hover {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+}
+
+.search-bar {
+  width: 20vw !important;
 }
 /*# sourceMappingURL=main.css.map */

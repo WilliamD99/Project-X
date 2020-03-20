@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default class MenuLeft extends Component {
   state = {
-    option: "trend"
+    option: null
   };
   onSelect = event => {
     let target = event.target;
@@ -84,14 +84,14 @@ export default class MenuLeft extends Component {
                   Top Projects
                 </Nav.Item>
               </Link>
-              <Link to="/users">
+              <Link to="/topics">
                 <Nav.Item
                   eventKey="4"
-                  icon={<Icon icon="avatar" />}
+                  icon={<Icon icon="book2" />}
                   name="users"
                   componentClass="div"
                 >
-                  Users
+                  Topics
                 </Nav.Item>
               </Link>
               <Link to="/weird">

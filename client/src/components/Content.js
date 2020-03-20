@@ -8,6 +8,7 @@ import MenuLeft from "./MenuLeft";
 import Top from "./Top";
 import Developers from "./Developers";
 import Weird from "./Weird";
+import Topic from "./Topic";
 
 //Axios Call
 import local from "../helpers/local";
@@ -54,6 +55,10 @@ export default class Content extends Component {
       page: val
     });
   };
+  searchTopic = (topic) => {
+    let topicObject = git.get(`repositories?q=${topic}`)
+
+  }
   componentDidMount() {
     let topObject = git.get("repositories?q=stars:>1");
     topObject.then(res => {
@@ -99,8 +104,6 @@ export default class Content extends Component {
               render={() => (
                 <Trending
                   data={this.state.trend[this.state.page]}
-                  freq={this.trendingFreq}
-                  lang={this.trendingLang}
                   length={this.state.trend.length}
                   pageControl={this.pagination}
                 />
@@ -116,6 +119,10 @@ export default class Content extends Component {
                 />
               )}
             />
+            <Route path="/topics" render={() => (
+              <Topic
+              />
+            )} />
             <Route
               path="/weird"
               render={() => (
