@@ -26,10 +26,8 @@ export default class NavTop extends Component {
     this.setState({ showAbout: false });
   };
   identity = () => {
-    if (this.props.user === null) {
+    if (this.props.user === "") {
       return <Login />
-    } else {
-      return <Identity data={this.state.user} />
     }
   }
   render() {
@@ -117,7 +115,13 @@ export default class NavTop extends Component {
             </Nav.Item>
           </Nav>
           <Nav pullRight>
-            {this.identity}
+            {() => {
+              console.log(this.props.user)
+              if (this.props.user === "") {
+                console.log(this.props.user)
+                return <Login />
+              }
+            }}
           </Nav>
         </Navbar.Body>
       </Navbar>
