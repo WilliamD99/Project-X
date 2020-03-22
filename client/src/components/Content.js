@@ -106,6 +106,7 @@ export default class Content extends Component {
                   data={this.state.trend[this.state.page]}
                   length={this.state.trend.length}
                   pageControl={this.pagination}
+                  ava={this.props.data[0].value}
                 />
               )}
             ></Route>
@@ -116,6 +117,7 @@ export default class Content extends Component {
                   data={this.state.top[this.state.page]}
                   length={this.state.top.length}
                   pageControl={this.pagination}
+                  ava={this.props.data[0].value}
                 />
               )}
             />
@@ -129,6 +131,7 @@ export default class Content extends Component {
                 <Weird
                   data={this.state.weird[this.state.page]}
                   length={this.state.weird.length}
+                  ava={this.props.data[0].value}
                 />
               )}
             />

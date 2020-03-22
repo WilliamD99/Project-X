@@ -34,7 +34,10 @@ class App extends Component {
         <Particles className="background" params={config} />
         <Switch>
           <Redirect from="home" to="/" />
-          <Route path="/" component={Content} />
+          <Route path="/" render={() => (
+            <Content
+              data={this.state.user.photos}
+            />)} />
           <PrivateRoute path="/protected" component={ProtectedPage} />
         </Switch>
       </Router>

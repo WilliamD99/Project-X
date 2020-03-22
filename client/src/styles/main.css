@@ -182,6 +182,25 @@ input:focus {
   padding: 0 !important;
 }
 
+.logged .rs-icon {
+  font-size: 2rem !important;
+}
+
+.account {
+  padding: 1rem;
+}
+
+.account #profile {
+  color: black !important;
+  font-size: 0.95rem !important;
+}
+
+.account #signout {
+  color: black !important;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
 .badge {
   margin: 0 0.3rem;
 }

@@ -92,3 +92,21 @@ input:focus {
 .rs-modal-content {
   padding: 0 !important;
 }
+
+.logged {
+  .rs-icon {
+    font-size: 2rem !important;
+  }
+}
+.account {
+  padding: 1rem;
+  #profile {
+    color: black !important;
+    font-size: 0.95rem !important;
+  }
+  #signout {
+    color: black !important;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+}

@@ -126,7 +126,7 @@ export default class Bone extends Component {
                                     <span className="comment-avatar float-left">
                                         <img
                                             className="rounded-circle avatar"
-                                            src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg"
+                                            src={this.props.ava}
                                             alt="..."
                                         />
                                     </span>

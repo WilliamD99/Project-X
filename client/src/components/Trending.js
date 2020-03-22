@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
 
-export default function Trening({ data, length, pageControl }) {
+export default function Trening({ data, length, pageControl, ava }) {
   let contributors = arr => {
     let ele = arr.map(contributor => (
       <li key={contributor.username}>
@@ -78,7 +78,7 @@ export default function Trening({ data, length, pageControl }) {
                 <span className="comment-avatar float-left">
                   <img
                     className="rounded-circle avatar"
-                    src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg"
+                    src={ava}
                     alt="..."
                   />
                 </span>

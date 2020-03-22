@@ -25,12 +25,21 @@ export default class NavTop extends Component {
   closeAbout = () => {
     this.setState({ showAbout: false });
   };
-  identity = () => {
-    if (this.props.user === "") {
-      return <Login />
-    }
+  login = () => {
+    // Change location to /login server route while sending a redirect url 
+    // If user is coming from a page different than /, get the page they
+    // are coming from, otherwise redirect to / after login
+    // const { from } = this.props.location.state || { from: { pathname: '/' } };
+    // const url = `${window.location.protocol}//${window.location.host}${from.pathname}`
+    window.location = `http://localhost:5000/login/`;
   }
   render() {
+    let content;
+    if (this.props.user === "") {
+      content = <Login />
+    } else {
+      content = <Identity user={this.props.user} />
+    }
     return (
       <Navbar id="nav-top">
         <Navbar.Header>
@@ -115,13 +124,7 @@ export default class NavTop extends Component {
             </Nav.Item>
           </Nav>
           <Nav pullRight>
-            {() => {
-              console.log(this.props.user)
-              if (this.props.user === "") {
-                console.log(this.props.user)
-                return <Login />
-              }
-            }}
+            {content}
           </Nav>
         </Navbar.Body>
       </Navbar>
