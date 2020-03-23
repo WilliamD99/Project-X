@@ -8,7 +8,6 @@ export default function Identity({ user }) {
         const url = `${window.location.protocol}//${window.location.host}`;
         window.location = `http://localhost:5000/logout?from=${url}`;
     }
-    console.log(user)
     return (
         <>
             <Navbar.Header className="media mr-5">

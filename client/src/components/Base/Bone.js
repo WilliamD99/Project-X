@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Icon } from "rsuite";
-import dateFormat from "../helpers/dateFormat";
-import CommentBox from "./CommentBox";
+import dateFormat from "../../helpers/dateFormat";
+import CommentBox from "../CommentBox";
 
 export default class Bone extends Component {
     //Init page buttons
@@ -63,6 +63,10 @@ export default class Bone extends Component {
         }
     }
     render() {
+        let userAva;
+        if (this.props.ava !== undefined) {
+            userAva = this.props.ava[0].value
+        }
         let data = this.props.data;
         let contents = data.map((content, index) => (
             <section className="hero" key={index}>
@@ -122,7 +126,7 @@ export default class Bone extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <CommentBox ava={this.props.ava[0].value} />
+                                <CommentBox ava={userAva} />
                             </div>
                         </div>
                     </div>

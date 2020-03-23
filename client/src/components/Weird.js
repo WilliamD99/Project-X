@@ -1,5 +1,5 @@
 import React from 'react'
-import Bone from "./Bone";
+import Bone from "./Base/Bone";
 
 export default function Weird({ data, length, ava }) {
     return (

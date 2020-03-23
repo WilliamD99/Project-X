@@ -8,7 +8,6 @@ export default function Trening({ data, length, pageControl, ava }) {
   // if (ava !== undefined) {
   //   userAva = ava.photos[0].value
   // }
-  console.log(ava)
   if (ava !== undefined) {
     userAva = ava[0].value
   }

@@ -54,10 +54,6 @@ export default class Content extends Component {
       page: val
     });
   };
-  searchTopic = (topic) => {
-    let topicObject = git.get(`repositories?q=${topic}`)
-
-  }
   componentDidMount() {
     let topObject = git.get("repositories?q=stars:>1");
     topObject.then(res => {
@@ -79,7 +75,8 @@ export default class Content extends Component {
   async componentDidUpdate(prevProps, prevState) {
     if (
       this.state.language !== prevState.language ||
-      this.state.frequent !== prevState.frequent
+      this.state.frequent !== prevState.frequent ||
+      this.state.search !== prevState.search
     ) {
       let trendingObject = await trend.get(
         `repositories?language=${this.state.language}&since=${this.state.frequent}`
@@ -121,7 +118,8 @@ export default class Content extends Component {
               )}
             />
             <Route path="/topics" render={() => (
-              <Topic
+              <Topic pageControl={this.pagination} ava={this.props.data} page={this.state.page}
+
               />
             )} />
             <Route
