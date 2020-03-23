@@ -1,13 +1,12 @@
+//React Components
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CommentBox from "./Base/CommentBox"
+//Font awesome icon
 import { faStar, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
-import CommentBox from "./CommentBox"
 
 export default function Trening({ data, length, pageControl, ava }) {
   let userAva;
-  // if (ava !== undefined) {
-  //   userAva = ava.photos[0].value
-  // }
   if (ava !== undefined) {
     userAva = ava[0].value
   }

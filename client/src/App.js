@@ -1,21 +1,23 @@
 //Import React Component
 import React, { Component } from "react";
-import Nav from "./components/NavTop";
+import Nav from "./components/NavTop/NavTop";
 import Content from "./components/Content";
 import AuthButton from "./components/Login/AuthButton";
 import PrivateRoute from "./components/Login/PrivateRoute"
 import ProtectedPage from "./components/Login/ProtectedPage"
 import Particles from "react-particles-js";
-//Config for background
-import config from "./helpers/config";
-
-import "./styles/main.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
+
+//Config for background
+import config from "./helpers/config";
+
+//Style
+import "./styles/main.css";
 
 class App extends Component {
   state = {

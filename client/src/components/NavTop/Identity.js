@@ -22,7 +22,7 @@ export default function Identity({ user }) {
                     </Dropdown.Item>
                     <Dropdown.Item panel className="account" ><p id="signout" onClick={signOut}>Sign out</p></Dropdown.Item>
                 </Dropdown>
-                <a href={user.profileUrl}><img className="rounded-circle avatar" src={user.photos[0].value} /></a>
+                <a href={user.profileUrl}><img className="rounded-circle avatar" src={user.photos[0].value} alt="user avatar" /></a>
             </Navbar.Header>
 
         </>

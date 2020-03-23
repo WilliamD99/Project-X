@@ -1,7 +1,9 @@
+//React Components
 import React, { Component } from "react";
 import { Icon } from "rsuite";
+import CommentBox from "./CommentBox";
+//Helper function
 import dateFormat from "../../helpers/dateFormat";
-import CommentBox from "../CommentBox";
 
 export default class Bone extends Component {
     //Init page buttons

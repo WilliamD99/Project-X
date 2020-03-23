@@ -119,7 +119,6 @@ export default class Content extends Component {
             />
             <Route path="/topics" render={() => (
               <Topic pageControl={this.pagination} ava={this.props.data} page={this.state.page}
-
               />
             )} />
             <Route

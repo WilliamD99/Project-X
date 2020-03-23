@@ -1,9 +1,11 @@
+//React Component
 import React, { Component } from "react";
 import { Navbar, Nav, Modal, Icon } from "rsuite";
-import shot from "../assets/About/Nam_Doan_WD.jpg";
 import { Link } from "react-router-dom";
 import Login from "./Login"
 import Identity from "./Identity";
+//Will's headshot
+import shot from "../../assets/About/Nam_Doan_WD.jpg";
 
 export default class NavTop extends Component {
   constructor(props) {
@@ -98,12 +100,10 @@ export default class NavTop extends Component {
                       <span className="badge badge-dark">Microsoft Office</span>
                     </center>
                     <center>
-                      <p className="text-left">
+                      <p className="text-left mt-1">
                         <strong>Bio: </strong>
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut sem dui, tempor sit amet commodo a, vulputate vel
-                        tellus.
+                        Just a typical Asian guy, who love playing basketball and traveling the world, and turning coffee into code. Trying hard to be a full stack developer!!
                       </p>
                     </center>
                   </div>
