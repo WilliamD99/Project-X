@@ -1,8 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
+import CommentBox from "./CommentBox"
 
 export default function Trening({ data, length, pageControl, ava }) {
+  let userAva;
+  // if (ava !== undefined) {
+  //   userAva = ava.photos[0].value
+  // }
+  console.log(ava)
+  if (ava !== undefined) {
+    userAva = ava[0].value
+  }
   let contributors = arr => {
     let ele = arr.map(contributor => (
       <li key={contributor.username}>
@@ -55,7 +64,6 @@ export default function Trening({ data, length, pageControl, ava }) {
                   </div>
                 </div>
               </div>
-
               <div className="cardbox-item">
                 <div className="">
                   <div className="card-body">
@@ -69,23 +77,12 @@ export default function Trening({ data, length, pageControl, ava }) {
               <div className="cardbox-base">
                 <div id="contributors" className="float-left">
                   <ul>
-                    {content.builtBy.length} contributors{" "}
                     {contributors(content.builtBy)}
+                    <li><a><span>{content.builtBy.length} contributors</span></a></li>
                   </ul>
                 </div>
               </div>
-              <div className="cardbox-comments">
-                <span className="comment-avatar float-left">
-                  <img
-                    className="rounded-circle avatar"
-                    src={ava}
-                    alt="..."
-                  />
-                </span>
-                <div className="search">
-                  <input placeholder="Write a comment" type="text" />
-                </div>
-              </div>
+              <CommentBox ava={userAva} />
             </div>
           </div>
         </div>

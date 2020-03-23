@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Icon } from "rsuite";
 import dateFormat from "../helpers/dateFormat";
+import CommentBox from "./CommentBox";
 
 export default class Bone extends Component {
     //Init page buttons
@@ -121,19 +122,7 @@ export default class Bone extends Component {
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className="cardbox-comments">
-                                    <span className="comment-avatar float-left">
-                                        <img
-                                            className="rounded-circle avatar"
-                                            src={this.props.ava}
-                                            alt="..."
-                                        />
-                                    </span>
-                                    <div className="search">
-                                        <input placeholder="Write a comment" type="text" />
-                                    </div>
-                                </div>
+                                <CommentBox ava={this.props.ava[0].value} />
                             </div>
                         </div>
                     </div>

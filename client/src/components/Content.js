@@ -25,7 +25,6 @@ export default class Content extends Component {
     page: 0,
     page_max: 0
   };
-
   processData = obj => {
     let data = obj.data;
     let dataSliced = chunk(data, 10);
@@ -106,7 +105,7 @@ export default class Content extends Component {
                   data={this.state.trend[this.state.page]}
                   length={this.state.trend.length}
                   pageControl={this.pagination}
-                  ava={this.props.data[0].value}
+                  ava={this.props.data}
                 />
               )}
             ></Route>
@@ -117,7 +116,7 @@ export default class Content extends Component {
                   data={this.state.top[this.state.page]}
                   length={this.state.top.length}
                   pageControl={this.pagination}
-                  ava={this.props.data[0].value}
+                  ava={this.props.data}
                 />
               )}
             />
@@ -131,7 +130,7 @@ export default class Content extends Component {
                 <Weird
                   data={this.state.weird[this.state.page]}
                   length={this.state.weird.length}
-                  ava={this.props.data[0].value}
+                  ava={this.props.data}
                 />
               )}
             />
