@@ -1,8 +1,10 @@
+//Component
 import React, { Component } from 'react';
 import {
     Route,
     Redirect
 } from 'react-router-dom';
+//Helper
 import axios from 'axios';
 
 class PrivateRoute extends Component {
@@ -11,7 +13,6 @@ class PrivateRoute extends Component {
         isAuthenticated: false,
         user: null
     }
-
     componentDidMount() {
         // Send an Auth check request to the server
         // don't forget to set axios to send requests withCredentials
@@ -31,7 +32,6 @@ class PrivateRoute extends Component {
                 });
             });
     }
-
     render() {
         const { component: Component, ...rest } = this.props;
         // Return a Route with all original props passed to it
@@ -56,5 +56,4 @@ class PrivateRoute extends Component {
         )
     }
 }
-
 export default PrivateRoute;

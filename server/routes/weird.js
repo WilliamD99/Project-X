@@ -1,9 +1,6 @@
 const express = require("express");
-
 const weirdFile = __dirname + "/../models/weirdProjects.json";
-
 const projects = require(weirdFile);
-
 const router = express.Router();
 
 router

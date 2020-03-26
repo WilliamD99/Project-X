@@ -113,18 +113,16 @@ body {
   border-radius: 0 !important;
 }
 
+.modal-content .social-link i {
+  font-size: 2rem !important;
+}
+
 .btn {
   color: white !important;
 }
 
 .rs-modal-content {
   background-color: rgba(255, 255, 255, 1e-05) !important;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
 .nav-item .nav-link {
@@ -201,6 +199,18 @@ body {
   white-space: nowrap;
   background: 0 0;
   border: 0;
+}
+
+#contributors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  background-color: white;
 }
 
 /* ------------------------------- */
@@ -281,18 +291,6 @@ body {
 ---------------------------------- */
 .cardbox-base {
   border-bottom: 2px solid #f4f4f4;
-}
-
-.cardbox-base #contributors {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100%;
-  background-color: white;
 }
 
 .cardbox-base #sum-contributors {
@@ -456,9 +454,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .related-date span {
@@ -470,6 +468,17 @@ body {
 .upload,
 .edit {
   margin-right: 0.25rem;
+}
+
+.like-button {
+  outline: none !important;
+  background-color: white;
+}
+
+.like-button .like-icon {
+  font-size: 1.1rem !important;
+  cursor: pointer;
+  color: black;
 }
 
 #menu-left {
@@ -539,7 +548,15 @@ ul a:hover {
           align-items: flex-end;
 }
 
+#developers .developer-icon {
+  font-size: 1.3rem;
+}
+
 .search-bar {
   width: 20vw !important;
+}
+
+.search input {
+  outline: none;
 }
 /*# sourceMappingURL=main.css.map */

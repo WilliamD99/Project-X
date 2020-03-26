@@ -33,7 +33,7 @@ class AuthButton extends Component {
         // Display user name and sign out button for logged in user
         // or a "not logged in" message
         return (
-            <></>
+            null
         )
     }
 }

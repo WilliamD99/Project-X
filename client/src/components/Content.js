@@ -9,6 +9,7 @@ import Top from "./Top";
 import Developers from "./Developers";
 import Weird from "./Weird";
 import Topic from "./Topic";
+import Save from "./Save";
 
 //Axios Call
 import local from "../helpers/local";
@@ -23,8 +24,21 @@ export default class Content extends Component {
     frequent: "daily", //Default for Trending
     language: "", //Default for Trending
     page: 0,
-    page_max: 0
+    page_max: 0,
+    dynamicSave: true
   };
+  //Use this to allow ComponentDidUpdate
+  reloadSave = () => {
+    if (this.state.dynamicSave) {
+      this.setState({
+        dynamicSave: false
+      })
+    } else {
+      this.setState({
+        dynamicSave: true
+      })
+    }
+  }
   processData = obj => {
     let data = obj.data;
     let dataSliced = chunk(data, 10);
@@ -39,6 +53,7 @@ export default class Content extends Component {
       top: dataSliced
     });
   };
+  //Setting for trending page
   trendingFreq = freq => {
     this.setState({
       frequent: freq
@@ -49,6 +64,7 @@ export default class Content extends Component {
       language: lang
     });
   };
+  //Pagination
   pagination = val => {
     this.setState({
       page: val
@@ -71,17 +87,33 @@ export default class Content extends Component {
         weird: dataSliced
       });
     });
+    if (this.props.data !== undefined) {
+      let dataObject = local.get(`/save/${this.props.id}`)
+      dataObject.then(res => {
+        let data = res.data[0].items;
+        this.setState({
+          save: data
+        })
+      })
+    }
   }
   async componentDidUpdate(prevProps, prevState) {
     if (
       this.state.language !== prevState.language ||
       this.state.frequent !== prevState.frequent ||
-      this.state.search !== prevState.search
+      this.state.search !== prevState.search ||
+      this.props.data !== prevProps.data ||
+      this.state.dynamicSave !== prevState.dynamicSave
     ) {
       let trendingObject = await trend.get(
         `repositories?language=${this.state.language}&since=${this.state.frequent}`
       );
       this.processData(trendingObject);
+      let dataObject = await local.get(`/save/${this.props.id}`)
+      let data = dataObject.data[0].items;
+      this.setState({
+        save: data
+      })
     }
   }
   render() {
@@ -90,7 +122,7 @@ export default class Content extends Component {
     } else {
       return (
         <>
-          <MenuLeft page={this.state.option} freq={this.trendingFreq} lang={this.trendingLang} />
+          <MenuLeft page={this.state.option} freq={this.trendingFreq} lang={this.trendingLang} id={this.props.id} />
           <Developers />
           <Switch>
             <Redirect from="/trend" to="/" />
@@ -114,11 +146,18 @@ export default class Content extends Component {
                   length={this.state.top.length}
                   pageControl={this.pagination}
                   ava={this.props.data}
+                  id={this.props.id}
+                  reloadSave={this.reloadSave}
                 />
               )}
             />
             <Route path="/topics" render={() => (
-              <Topic pageControl={this.pagination} ava={this.props.data} page={this.state.page}
+              <Topic
+                pageControl={this.pagination}
+                ava={this.props.data}
+                page={this.state.page}
+                id={this.props.id}
+                reloadSave={this.reloadSave}
               />
             )} />
             <Route
@@ -126,6 +165,18 @@ export default class Content extends Component {
               render={() => (
                 <Weird
                   data={this.state.weird[this.state.page]}
+                  length={this.state.weird.length}
+                  ava={this.props.data}
+                  id={this.props.id}
+                  reloadSave={this.reloadSave}
+                />
+              )}
+            />
+            <Route
+              path="/save"
+              render={() => (
+                <Save
+                  data={this.state.save}
                   length={this.state.weird.length}
                   ava={this.props.data}
                 />

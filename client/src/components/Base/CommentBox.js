@@ -1,3 +1,4 @@
+//Component
 import React from 'react'
 
 export default function CommentBox({ ava }) {
@@ -8,7 +9,7 @@ export default function CommentBox({ ava }) {
                 <img
                     className="rounded-circle avatar"
                     src={ava}
-                    alt="..."
+                    alt="Avatar"
                 />
             </span>
             <div className="search">
@@ -16,7 +17,7 @@ export default function CommentBox({ ava }) {
             </div>
         </div>
     } else {
-        content = <div></div>
+        content = null
     }
     return (
         <>{content}</>

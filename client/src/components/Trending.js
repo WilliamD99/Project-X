@@ -120,7 +120,7 @@ export default function Trening({ data, length, pageControl, ava }) {
       {contents}
       <nav>
         <ul className="pagination justify-content-center">
-          <li className="page-item">
+          {/* <li className="page-item">
             <a
               className="page-link"
               aria-label="Previous"
@@ -129,9 +129,9 @@ export default function Trening({ data, length, pageControl, ava }) {
               <span aria-hidden="true">«</span>
               <span className="sr-only">Previous</span>
             </a>
-          </li>
+          </li> */}
           {pageNum(length)}
-          <li className="page-item">
+          {/* <li className="page-item">
             <a
               className="page-link"
               aria-label="Next"
@@ -140,7 +140,7 @@ export default function Trening({ data, length, pageControl, ava }) {
               <span aria-hidden="true">»</span>
               <span className="sr-only">Next</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </>

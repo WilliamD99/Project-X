@@ -29,7 +29,8 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/check-auth', (req, res) => {
-    if (req.user === undefined) return res.status(401).send('Unauthorized');
+    if (req.user === undefined)
+        return res.status(401).send('Unauthorized');
     res.status(200).json(req.user);
 });
 

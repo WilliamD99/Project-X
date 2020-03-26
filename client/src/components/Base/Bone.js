@@ -2,8 +2,11 @@
 import React, { Component } from "react";
 import { Icon } from "rsuite";
 import CommentBox from "./CommentBox";
+import LikeButton from "../LikeButton"
 //Helper function
 import dateFormat from "../../helpers/dateFormat";
+//Helper
+import local from "../../helpers/local"
 
 export default class Bone extends Component {
     //Init page buttons
@@ -39,39 +42,37 @@ export default class Bone extends Component {
         if (length > 1) {
             return <nav>
                 <ul className="pagination justify-content-center">
-                    <li className="page-item">
-                        <a
-                            className="page-link"
-                            aria-label="Previous"
-                            href="https://www.google.com"
-                        >
-                            <span aria-hidden="true">«</span>
-                            <span className="sr-only">Previous</span>
-                        </a>
-                    </li>
                     {this.pageNum(this.props.length)}
-                    <li className="page-item">
-                        <a
-                            className="page-link"
-                            aria-label="Next"
-                            href="https://www.google.com"
-                        >
-                            <span aria-hidden="true">»</span>
-                            <span className="sr-only">Next</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         }
     }
+    //Save like post
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.props.reloadSave();
+        let data = local.post(`save/${this.props.id}`, {
+            id: event.target[0].name,
+            avatar_url: event.target[1].name,
+            login: event.target[2].name,
+            forks: event.target[3].name,
+            watchers: event.target[4].name,
+            language: event.target[5].name,
+            name: event.target[6].name,
+            description: event.target[7].name,
+            created_at: event.target[8].name,
+            updated_at: event.target[9].name
+        })
+    }
     render() {
+        // let arr = [{ id: "123", name: "Nam" }, { id: 28457823, name: "test" }]
         let userAva;
         if (this.props.ava !== undefined) {
             userAva = this.props.ava[0].value
         }
         let data = this.props.data;
         let contents = data.map((content, index) => (
-            <section className="hero" key={index}>
+            <section className="hero" key={content.id}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6 offset-lg-3">
@@ -105,29 +106,53 @@ export default class Bone extends Component {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="cardbox-item">
                                     <div className="card-body">
                                         <a href={content.html_url}>
                                             <h5 className="card-title">{content.name}</h5>
                                         </a>
                                         <p className="card-text">{content.description}</p>
-                                        <div className="related-date">
+                                        <div className="related-date mt-3">
                                             <small>
-                                                <span className="m=0 float-right">
-                                                    <Icon icon="cloud-upload" className="upload" />
-                                                    {dateFormat(content.created_at)}
+                                                <span className="float-left">
+                                                    <form onSubmit={this.onSubmit}>
+                                                        <input type="hidden" name={content.id} />
+                                                        <input type="hidden" name={content.owner.avatar_url} />
+                                                        <input type="hidden" name={content.owner.login} />
+                                                        <input type="hidden" name={content.forks} />
+                                                        <input type="hidden" name={content.watchers} />
+                                                        <input type="hidden" name={content.language} />
+                                                        <input type="hidden" name={content.name} />
+                                                        <input type="hidden" name={content.description} />
+                                                        <input type="hidden" name={content.created_at} />
+                                                        <input type="hidden" name={content.updated_at} />
+                                                        <button className="like-button"><LikeButton id={this.props.id} /></button>
+                                                    </form>
                                                 </span>
                                             </small>
-                                            <small>
-                                                <span className="m=0 float-right">
-                                                    <Icon icon="edit2" className="edit" />
-                                                    {dateFormat(content.updated_at)}
-                                                </span>
-                                            </small>
+                                            <div>
+                                                <small>
+                                                    <span className="m=0 float-right">
+                                                        <Icon icon="cloud-upload" className="upload" />
+                                                        {dateFormat(content.created_at)}
+                                                    </span>
+                                                </small>
+                                                <small>
+                                                    <span className="m=0 float-right">
+                                                        <Icon icon="edit2" className="edit" />
+                                                        {dateFormat(content.updated_at)}
+                                                    </span>
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                {/* Use code below to work with comments */}
+                                {/* {arr.filter(comment => {
+                                    return comment.id === content.id
+                                }).map(comment => {
+                                    return <h2>{comment.name}</h2>
+                                })} */}
                                 <CommentBox ava={userAva} />
                             </div>
                         </div>

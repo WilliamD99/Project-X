@@ -12,10 +12,8 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-
 //Config for background
 import config from "./helpers/config";
-
 //Style
 import "./styles/main.css";
 
@@ -39,6 +37,7 @@ class App extends Component {
           <Route path="/" render={() => (
             <Content
               data={this.state.user.photos}
+              id={this.state.user.id}
             />)} />
           <PrivateRoute path="/protected" component={ProtectedPage} />
         </Switch>

@@ -1,6 +1,8 @@
+//Components
 import React, { Component } from 'react'
 import { InputGroup, Input, Icon, Button } from "rsuite";
 import Bone from "./Base/Bone"
+//Helpers
 import { git } from "../helpers/gitAPI"
 import chunk from "../helpers/sliceData";
 
@@ -15,6 +17,7 @@ export default class Topic extends Component {
             search: target.value
         })
     }
+    //Axios call for search bar
     search = () => {
         let dataObject = git.get(`repositories?q=${this.state.search}`)
         dataObject.then(res => {
@@ -25,6 +28,7 @@ export default class Topic extends Component {
             })
         })
     }
+    //Axios call for suggestion buttons
     suggest = event => {
         let target = event.target;
         let name = target.name;
@@ -76,7 +80,7 @@ export default class Topic extends Component {
                             </InputGroup.Button>
                         </InputGroup>
                     </div>
-                    <Bone data={this.state.data[this.props.page]} length={this.state.data.length} controller={this.props.pageControl} ava={this.props.ava} />
+                    <Bone data={this.state.data[this.props.page]} length={this.state.data.length} controller={this.props.pageControl} ava={this.props.ava} id={this.props.id} reloadSave={this.props.reloadSave} />
                 </>
             )
         }

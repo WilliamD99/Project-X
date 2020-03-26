@@ -1,4 +1,7 @@
+//Components
 import React, { Component } from "react";
+import { Icon } from "rsuite";
+//Helper
 import { trend } from "../helpers/gitAPI";
 
 export default class Developers extends Component {
@@ -37,18 +40,16 @@ export default class Developers extends Component {
   };
   render() {
     return (
-      <>
-        <div className="col-md-3 float-right" id="developers">
-          <div className="card">
-            <div className="card-body">
-              <div className="h5">Trending developers</div>
-            </div>
-            <ul className="list-group list-group-flush">
-              {this.htmlConstructor(this.state.developers)}
-            </ul>
+      <div className="col-md-3 float-right" id="developers">
+        <div className="card">
+          <div className="card-body">
+            <div className="h5"><Icon icon="peoples" className="developer-icon mr-2" />Trending developers</div>
           </div>
+          <ul className="list-group list-group-flush">
+            {this.htmlConstructor(this.state.developers)}
+          </ul>
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -19,7 +19,8 @@ const GitHubStrategy = require('passport-github').Strategy;
 
 // import router paths
 const login = require('./routes/login');
-const weird = require("./routes/weird")
+const weird = require("./routes/weird");
+const save = require("./routes/save")
 
 // require .env files for private data (keys and secrets)
 require('dotenv').config();
@@ -87,7 +88,8 @@ passport.deserializeUser((user, cb) => {
 
 // paths, url endpoint routing
 app.use('/', login);
-app.use("/weird", weird)
+app.use("/weird", weird);
+app.use("/save", save);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}.`);

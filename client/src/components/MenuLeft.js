@@ -1,3 +1,4 @@
+//Components
 import React, { Component } from "react";
 import { Sidenav, Icon, Nav, Dropdown } from "rsuite";
 import { Link } from "react-router-dom";
@@ -6,6 +7,7 @@ export default class MenuLeft extends Component {
   state = {
     option: null
   };
+  //Enable setting for Trending Component
   onSelect = event => {
     let target = event.target;
     let value = Object.values(target);
@@ -24,7 +26,7 @@ export default class MenuLeft extends Component {
     this.props.lang(target.name)
   }
   render() {
-    let setting;
+    let setting, saveLink;
     if (this.state.option === "trend") {
       setting = (
         <Dropdown
@@ -53,6 +55,19 @@ export default class MenuLeft extends Component {
           </Dropdown.Menu>
         </Dropdown>
       );
+    }
+    //Enable Save Component if user is logged in
+    if (this.props.id !== undefined) {
+      saveLink = (<Link to="/save">
+        <Nav.Item
+          eventKey="6"
+          icon={<Icon icon="heart" />}
+          name="saved"
+          componentClass="div"
+        >
+          Saved
+      </Nav.Item>
+      </Link>)
     }
     return (
       <div style={{ width: 250 }} id="menu-left">
@@ -104,6 +119,7 @@ export default class MenuLeft extends Component {
                   Weird Projects
                 </Nav.Item>
               </Link>
+              {saveLink}
               {setting}
             </Nav>
           </Sidenav.Body>
