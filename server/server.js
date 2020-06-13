@@ -56,12 +56,9 @@ app.use(
 
 app.use(passport.initialize());
 
-// passport.session middleware explanation
-// https://stackoverflow.com/questions/22052258/what-does-passport-session-middleware-do
 app.use(passport.session());
 
 // initialize github strategy middleware
-// http://www.passportjs.org/packages/passport-github/
 passport.use(
   new GitHubStrategy(passportConfig, function (
     _accessToken,
@@ -69,14 +66,12 @@ passport.use(
     profile,
     cb
   ) {
-    // console.log('Github Callback: ', profile);
     // this profile will get saved in express session
     return cb(null, profile);
   })
 );
 
 // serializeUser and deserializeUser explanation:
-// https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
 passport.serializeUser((user, cb) => {
   cb(null, user);
 });
